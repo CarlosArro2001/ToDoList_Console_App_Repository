@@ -2,7 +2,7 @@ import datetime
 class TaskClass():
     #Temporary Storage 
     global temp_Tasks, temp_Task , x
-    temp_Tasks = [['1','Task 1','Task 1 notes']] # list of lists [["1","Review Code","Review Corey's code "],["2","Stand Up ","Review Corey's code "]]
+    temp_Tasks = [['1','Task 1','Task 1 notes'],['2','Task 2','Task 2 notes']] # list of lists [["1","Review Code","Review Corey's code "],["2","Stand Up ","Review Corey's code "]]
     temp_Task = [] #list containing 3 elements [<task_no>,<task_name>,<task_notes>]
     x = datetime.datetime.now().date()
     #getter method for tasks 
@@ -12,9 +12,14 @@ class TaskClass():
             print(" No tasks available for {0} ".format(x))
         else:
             #printing task if has values 
-            i = 0
-            for i in temp_Tasks:
-                print("{0}".format(i))
+            i = 0 
+            print("\n \n Task List :")
+            while(i < len(temp_Tasks)):
+                print(temp_Tasks[i][0])
+                print("Task Name : {0}".format(temp_Tasks[i][1]))
+                print("Notes :\n {0}".format(temp_Tasks[i][2]))
+                i = i+1
+            print("\n")
                 
     #setter method for tasks
     def setTasks(self):
