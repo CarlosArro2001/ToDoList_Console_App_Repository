@@ -1,13 +1,30 @@
 import datetime
+import csv
 class TaskClass():
     #Temporary Storage 
-    global temp_Tasks, temp_Task , x
-    temp_Tasks = [['1','Task 1','Task 1 notes'],['2','Task 2','Task 2 notes']] # list of lists [["1","Review Code","Review Corey's code "],["2","Stand Up ","Review Corey's code "]]
-    temp_Task = [] #list containing 3 elements [<task_no>,<task_name>,<task_notes>]
+    global temp_Tasks, temp_Task , x , csv_File 
+    temp_Tasks = [] # list of lists [["1","Review Code","Review Corey's code "],["2","Stand Up ","Review Corey's code "]]
+    Task = [] #list containing 3 elements [<task_no>,<task_name>,<task_notes>]
+    csv_File = "TaskList.csv"
     x = datetime.datetime.now().date()
     #getter method for tasks 
     def getTasks(self):
-        #checking if empty 
+        with open(csv_File,'r') as file:
+            reader=csv.reader(file,delimiter=',')
+            for row in reader: 
+                if(not row):
+                    continue
+                else:
+                    temp_Tasks.append(row)
+            if(temp_Tasks[0][0]=='ï»¿No '):
+                temp_Tasks.remove(temp_Tasks[0])
+            i = 0
+            while(i <len(temp_Tasks)):
+                print("\n {0}. {1} \n notes: \n{2}".format(temp_Tasks[i][0],temp_Tasks[i][1],temp_Tasks[i][2]))
+                i = i+1
+            
+                    
+        '''
         if(not temp_Tasks):
             print(" No tasks available for {0} ".format(x))
         else:
@@ -20,7 +37,6 @@ class TaskClass():
                 print("Notes :\n {0}".format(temp_Tasks[i][2]))
                 i = i+1
             print("\n")
-                
     #setter method for tasks
     def setTasks(self):
         c = "y"
