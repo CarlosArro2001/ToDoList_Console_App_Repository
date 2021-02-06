@@ -22,6 +22,4 @@ class ToDo(TaskClass):
             elif(c==3):
                 print("\t \t EXITING TO DO LIST ")
                 sys.exit()
-
-
     menu()
